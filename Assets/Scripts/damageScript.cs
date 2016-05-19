@@ -3,7 +3,7 @@ using System.Collections;
 
 public class damageScript : MonoBehaviour {
 
-	public int damage = 10;
+	[HideInInspector] public int damage = 0;
 	
 	// Use this for initialization
 	void Start () {

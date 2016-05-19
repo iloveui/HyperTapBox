@@ -4,22 +4,17 @@ using System.Collections;
 public class TapBox : MonoBehaviour
 {
 
-    private int pushPower = 2000;
-    public int life = 200;
-    private int selfDamage = 10;
+    public int life = 20;
+    private int dmg = 50;
 
     void OnMouseDown()
     {
-        selfDamage = this.transform.GetComponent<damageScript>().damage;
-
-        life = life - selfDamage;
+        life = life - dmg;
         print(life);
         if (life < 1)
         {
-            GetComponent<Rigidbody>().AddForce(transform.forward * pushPower);
-            this.GetComponent<Rigidbody>().useGravity = true;
-            //iTween.fadeTo(gameObject,{"alpha":0, "onComplete":"destroy"});
-            Destroy(gameObject, 5);
+         
+            Destroy(gameObject,0.5f);
             print(life);
         }
     }
