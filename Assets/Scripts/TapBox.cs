@@ -5,7 +5,9 @@ public class TapBox : MonoBehaviour
 {
 
     public int life = 20;
-    private int dmg = 50;
+    private int dmg = 5;
+    public GameObject CC;
+
 
     void OnMouseDown()
     {
@@ -13,10 +15,13 @@ public class TapBox : MonoBehaviour
         print(life);
         if (life < 1)
         {
-         
-            Destroy(gameObject,0.5f);
+            Summon();
+            Destroy(gameObject, 1);
             print(life);
         }
     }
-
+    void Summon()
+    {
+        CC = Instantiate(Resources.Load("Box")) as GameObject;
+    }
 }
