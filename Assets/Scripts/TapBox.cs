@@ -14,10 +14,8 @@ public class TapBox : MonoBehaviour
         print(life);
         if (life < 1)
         {
-            Invoke("Summon", 1.5f);
             gameObject.SetActive(false);
             Destroy(gameObject, 1);
-            Summon();
             print(life);
         }
     }
