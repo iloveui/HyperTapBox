@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TapBox : MonoBehaviour
+public class TapBoxx : MonoBehaviour
 {
 
     public int life = 20;

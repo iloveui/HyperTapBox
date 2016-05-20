@@ -14,13 +14,14 @@ public class TapBox : MonoBehaviour
         print(life);
         if (life < 1)
         {
-            
+            Invoke("Summon", 1.5f);
+            gameObject.SetActive(false);
             Destroy(gameObject, 1);
             Summon();
             print(life);
         }
     }
-    void Summon()
+    public void Summon()
     {
         CC = Instantiate(Resources.Load("Box")) as GameObject;
     }
