@@ -3,7 +3,6 @@ using System.Collections;
 
 public class TapBox : MonoBehaviour
 {
-
     public int life = 20;
     private int dmg = 5;
     public GameObject CC;
@@ -15,8 +14,9 @@ public class TapBox : MonoBehaviour
         print(life);
         if (life < 1)
         {
-            Summon();
+            
             Destroy(gameObject, 1);
+            Summon();
             print(life);
         }
     }
