@@ -10,12 +10,16 @@ public class TapBox : MonoBehaviour
     public GameObject[] Items;
 
 
+
     void OnMouseDown()
     {
         life = life - dmg;
+        gameObject.GetComponent<Animator>().Play("Shake");
         print(life);
         if (life < 1)
         {
+            //BoxCollider[] myColliders = gameObject.GetComponents<BoxCollider>();
+            //foreach(BoxCollider bc in myColliders) bc.enabled = false;
             Destroy(gameObject, 0.10f);
             print(life);
             if (Random.Range(0.0f, 1.0f) <= dropRate)
