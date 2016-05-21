@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class TapBox : MonoBehaviour
 {
     public int life = 20;
     private int dmg = 5;
-    public GameObject CC;
     private float dropRate = 1.0f;
+    public GameObject[] Items;
 
 
     void OnMouseDown()
@@ -15,8 +16,7 @@ public class TapBox : MonoBehaviour
         print(life);
         if (life < 1)
         {
-            //gameObject.SetActive(false);
-            Destroy(gameObject);
+            Destroy(gameObject, 0.10f);
             print(life);
             if (Random.Range(0.0f, 1.0f) <= dropRate)
             {
@@ -26,6 +26,7 @@ public class TapBox : MonoBehaviour
     }
     public void Summon()
     {
-        CC = Instantiate(Resources.Load("Box")) as GameObject;
+        int ItemsIndex = Random.Range(0, Items.Length);
+        Instantiate(Items[ItemsIndex],transform.position, Quaternion.identity);
     }
 }
