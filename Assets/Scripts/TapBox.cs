@@ -8,21 +8,30 @@ public class TapBox : MonoBehaviour
     private int dmg = 5;
     private float dropRate = 1.0f;
     public GameObject[] Items;
+	//private int selfDamage = 0; //prueba daniel
     
 
 
 
     void OnMouseDown()
     {
-        life = life - dmg;
-        gameObject.GetComponent<Animator>().Play("Shake");
+        //selfDamage= this.transform.PlayerManager.GetComponent<damage>().dmg; // prueba daniel
+		life = life - dmg;
+        
+		
+		int pickAnumber = Random.Range(1,3);//exclusive never prints the last only goes 1 to 2
+        Debug.Log (pickAnumber);
+		
+		gameObject.GetComponent<Animator>().Play("Shake"+pickAnumber); //Play Random animation of shake
+		
         print(life);
         if (life < 1)
         {
             //BoxCollider[] myColliders = gameObject.GetComponents<BoxCollider>();
             //foreach(BoxCollider bc in myColliders) bc.enabled = false;
-            Destroy(gameObject, 0.10f);
             print(life);
+			Destroy(gameObject, 0.10f);
+			
             if (Random.Range(0.0f, 1.0f) <= dropRate)
             {
                 Summon();
