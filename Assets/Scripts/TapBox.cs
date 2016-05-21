@@ -8,6 +8,7 @@ public class TapBox : MonoBehaviour
     private int dmg = 5;
     private float dropRate = 1.0f;
     public GameObject[] Items;
+    
 
 
 
