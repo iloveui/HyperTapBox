@@ -6,17 +6,20 @@ public class TapBox : MonoBehaviour
 {
     public int life = 20;
     private int dmg = 5;
-    private float dropRate = 1.0f;
+    private float dropRate = 0.20f;
     public GameObject[] Items;
-	//private int selfDamage = 0; //prueba daniel
-    
 
-
-
+    void Start()
+    {
+        GameObject PlayerManager = GameObject.Find("PlayerManager");
+        Player player = PlayerManager.GetComponent<Player>();
+        player.damage = player.damage;
+        dmg = player.damage;
+    }
     void OnMouseDown()
     {
-        //selfDamage= this.transform.PlayerManager.GetComponent<damage>().dmg; // prueba daniel
-		life = life - dmg;
+
+        life = life - dmg;
         
 		
 		int pickAnumber = Random.Range(1,3);//exclusive never prints the last only goes 1 to 2
@@ -41,6 +44,6 @@ public class TapBox : MonoBehaviour
     public void Summon()
     {
         int ItemsIndex = Random.Range(0, Items.Length);
-        Instantiate(Items[ItemsIndex],transform.position, Quaternion.identity);
+        Instantiate(Items[ItemsIndex],transform.localPosition, Quaternion.identity);
     }
 }
