@@ -4,10 +4,23 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
     public int damage = 0;
+    private gameMaster gm;
+    private GameObject con;
 
-	public void Attack()
+	void Start()
     {
-        //damage=item
+        gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
+        damage = 10;
 
+    }
+
+    void OnMouseDown()
+    {
+        
+        if (con.CompareTag("coin"))
+        {
+            Destroy(con.gameObject);
+            gm.coins += 1;
+        } 
     }
 }

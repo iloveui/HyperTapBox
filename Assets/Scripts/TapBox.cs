@@ -5,7 +5,7 @@ using System.Collections;
 public class TapBox : MonoBehaviour
 {
     public int life = 20;
-    private int dmg = 5;
+    private int dmg = 0;
     private float dropRate = 0.20f;
     public GameObject[] Items;
 
