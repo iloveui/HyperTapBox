@@ -7,16 +7,18 @@ public class itemScript : MonoBehaviour {
     public Image icon;
     public Image coin;
     public Text name;
-    public Text cost;
+    public int cost;
     public Button thisButton;
+    private gameMaster gm;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public void BuyMB()
+    {
+        gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
+        if (gm.coins >= cost)
+        {
+            gm.mbCount += 1;
+            gm.coins -= cost;
+        }
+
+    }
 }
