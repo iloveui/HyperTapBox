@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
     public int damage = 0;
     private gameMaster gm;
     private GameObject con;
+    private GameObject mb;
 
 	void Start()
     {
@@ -16,7 +17,12 @@ public class Player : MonoBehaviour {
 
     void OnMouseDown()
     {
-        
+        if (mb.CompareTag("MBOX"))
+        {
+            Destroy(mb.gameObject);
+            gm.mbCount += 1;
+        }
+
         if (con.CompareTag("coin"))
         {
             Destroy(con.gameObject);
