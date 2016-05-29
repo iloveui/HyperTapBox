@@ -1,13 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 
 public class TapBox : MonoBehaviour
 {
     public int life = 20;
     private int dmg = 0;
-    private float dropRate = 0.20f;
+    private float dropRate = 0.56f;
     public GameObject[] Items;
+    public GameObject[] RareItems;
+    public Transform spawnPoint;
+    int minDrops = 1;
+    int maxDrops = 3;
+ 
 
     void Start()
     {
@@ -34,16 +40,35 @@ public class TapBox : MonoBehaviour
             //foreach(BoxCollider bc in myColliders) bc.enabled = false;
             print(life);
 			Destroy(gameObject, 0.10f);
-			
+
             if (Random.Range(0.0f, 1.0f) <= dropRate)
             {
-                Summon();
+                dropOnDeath();
+            }
+            else
+            {
+                if (Random.Range(0.0f, 1.0f) <= 0.1)
+                {
+                    rareDrop();
+                }
+                
             }
         }
     }
-    public void Summon()
+    public void dropOnDeath()
     {
-        int ItemsIndex = Random.Range(0, Items.Length);
-        Instantiate(Items[ItemsIndex],transform.localPosition, Quaternion.identity);
+        int pointRandom = Random.Range(1,3);
+        int numDrops = Random.Range(minDrops, maxDrops);
+        for (int i = 0; i < numDrops; ++i)
+        {
+            int ItemsIndex = Random.Range(0, Items.Length);
+            Instantiate(Items[ItemsIndex], transform.TransformVector(pointRandom,1,0), Quaternion.identity);
+        }
+    }
+
+    public void rareDrop()
+    {
+        int rareItemsIndex = Random.Range(0, RareItems.Length);
+        Instantiate(RareItems[rareItemsIndex], transform.position, Quaternion.identity);
     }
 }

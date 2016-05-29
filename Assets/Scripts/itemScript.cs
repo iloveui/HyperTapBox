@@ -4,11 +4,7 @@ using UnityEngine.UI;
 
 public class itemScript : MonoBehaviour {
 
-    public Image icon;
-    public Image coin;
-    public Text name;
     public int cost;
-    public Button thisButton;
     private gameMaster gm;
 
     public void BuyMB()
