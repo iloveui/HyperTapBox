@@ -57,12 +57,12 @@ public class TapBox : MonoBehaviour
     }
     public void dropOnDeath()
     {
-        int pointRandom = Random.Range(1,3);
+        int pointRandom = Random.Range(-1,3);
         int numDrops = Random.Range(minDrops, maxDrops);
         for (int i = 0; i < numDrops; ++i)
         {
             int ItemsIndex = Random.Range(0, Items.Length);
-            Instantiate(Items[ItemsIndex], transform.TransformVector(pointRandom,1,0), Quaternion.identity);
+            Instantiate(Items[ItemsIndex], transform.TransformVector(pointRandom, 2, pointRandom), Quaternion.identity);
         }
     }
 
