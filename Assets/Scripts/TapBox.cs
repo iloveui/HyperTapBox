@@ -2,29 +2,40 @@
 using System.Collections;
 using UnityEngine.UI;
 
-
 public class TapBox : MonoBehaviour
 {
     public int life = 20;
     private int dmg = 0;
-    private float dropRate = 0.56f;
-    public GameObject[] Items;
-    public GameObject[] RareItems;
-    public Transform spawnPoint;
+
+	//public Button BoxButton;
+	private Boxes box;
+	private Player player;
+
+    public float ComdropRate;
+	public float UnCdropRate;
+	public float RaredropRate;
+
+    public GameObject[] CommonDrop;
+	public GameObject[] UncommonDrop;
+    public GameObject[] RareDrop;
+
+    //public Transform spawnPoint;
     int minDrops = 1;
     int maxDrops = 3;
  
 
     void Start()
     {
-        GameObject PlayerManager = GameObject.Find("PlayerManager");
-        Player player = PlayerManager.GetComponent<Player>();
-        player.damage = player.damage;
-        dmg = player.damage;
+		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
+		dmg = player.damage;
     }
+	void Update()
+	{
+		dmg = player.damage;
+	}
     void OnMouseDown()
     {
-
+		
         life = life - dmg;
         
 		
@@ -36,24 +47,39 @@ public class TapBox : MonoBehaviour
         print(life);
         if (life < 1)
         {
-            //BoxCollider[] myColliders = gameObject.GetComponents<BoxCollider>();
-            //foreach(BoxCollider bc in myColliders) bc.enabled = false;
             print(life);
+			box = GameObject.FindGameObjectWithTag ("SpawnButton").GetComponent<Boxes> ();
+			box.buttonBox.interactable = true;
 			Destroy(gameObject, 0.10f);
 
-            if (Random.Range(0.0f, 1.0f) <= dropRate)
+			if (Random.Range(0.0f, 1.0f) <= ComdropRate)
             {
                 dropOnDeath();
             }
             else
             {
-                if (Random.Range(0.0f, 1.0f) <= 0.1)
+				if (Random.Range(0.0f, 1.0f) <= RaredropRate)
                 {
                     rareDrop();
                 }
-                
-            }
-        }
+				if (Random.Range(0.0f, 1.0f) <= UnCdropRate)
+				{
+					uncommonDrop ();
+				}
+      		}
+
+		//switch (3) 
+		//{
+		//case 1:
+			//return; break;
+		//case 2:
+			//break;
+		//case 3:
+			//break;
+		//default:
+			//break;
+		//}
+		}
     }
     public void dropOnDeath()
     {
@@ -61,14 +87,21 @@ public class TapBox : MonoBehaviour
         int numDrops = Random.Range(minDrops, maxDrops);
         for (int i = 0; i < numDrops; ++i)
         {
-            int ItemsIndex = Random.Range(0, Items.Length);
-            Instantiate(Items[ItemsIndex], transform.TransformVector(pointRandom, 2, pointRandom), Quaternion.identity);
+			int ItemsIndex = Random.Range(0, CommonDrop.Length);
+			Instantiate(CommonDrop[ItemsIndex], transform.TransformVector(pointRandom, 2, pointRandom), Quaternion.identity);
+		
         }
     }
 
     public void rareDrop()
     {
-        int rareItemsIndex = Random.Range(0, RareItems.Length);
-        Instantiate(RareItems[rareItemsIndex], transform.position, Quaternion.identity);
+		int rareItemsIndex = Random.Range(0, RareDrop.Length);
+		Instantiate(RareDrop[rareItemsIndex], transform.position, Quaternion.identity);
     }
+
+	public void uncommonDrop()
+	{
+		int uncommonItemsIndex = Random.Range(0, UncommonDrop.Length);
+		Instantiate(UncommonDrop[uncommonItemsIndex], transform.position, Quaternion.identity);
+	}
 }
