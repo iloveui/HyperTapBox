@@ -28,7 +28,7 @@ public class TapBox : MonoBehaviour
         life = life - dmg;
         
 		
-		int pickAnumber = Random.Range(1,3);//exclusive never prints the last only goes 1 to 2
+		int pickAnumber = Random.Range(1,4);//exclusive never prints the last only goes 1 to 3
         Debug.Log (pickAnumber);
 		
 		gameObject.GetComponent<Animator>().Play("Shake"+pickAnumber); //Play Random animation of shake
