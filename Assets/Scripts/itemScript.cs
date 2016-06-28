@@ -17,4 +17,10 @@ public class itemScript : MonoBehaviour {
         }
 
     }
+
+	public void Cash()
+	{
+		gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
+		gm.coins += 10;
+	}
 }
