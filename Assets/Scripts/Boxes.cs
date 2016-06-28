@@ -10,6 +10,7 @@ public class Boxes : MonoBehaviour
 	public Button buttonBox;
 
 
+
     public void Discount()
 	{
 		gm = GameObject.FindGameObjectWithTag ("GameMaster").GetComponent<gameMaster> ();

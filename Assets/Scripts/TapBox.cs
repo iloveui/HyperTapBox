@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class TapBox : MonoBehaviour
 {
-    public int life = 20;
+	public int life;
     private int dmg = 0;
 
 	//public Button BoxButton;
@@ -28,16 +28,20 @@ public class TapBox : MonoBehaviour
     {
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
 		dmg = player.damage;
+
     }
+
+		
 	void Update()
 	{
 		dmg = player.damage;
 	}
+
+
     void OnMouseDown()
     {
 		
-        life = life - dmg;
-        
+		life = life - dmg;
 		
 		int pickAnumber = Random.Range(1,4);//exclusive never prints the last only goes 1 to 3
         Debug.Log (pickAnumber);
@@ -45,7 +49,7 @@ public class TapBox : MonoBehaviour
 		gameObject.GetComponent<Animator>().Play("Shake"+pickAnumber); //Play Random animation of shake
 		
         print(life);
-        if (life < 1)
+		if (life < 1)
         {
             print(life);
 			box = GameObject.FindGameObjectWithTag ("SpawnButton").GetComponent<Boxes> ();
@@ -88,8 +92,7 @@ public class TapBox : MonoBehaviour
         for (int i = 0; i < numDrops; ++i)
         {
 			int ItemsIndex = Random.Range(0, CommonDrop.Length);
-			Instantiate(CommonDrop[ItemsIndex], transform.TransformVector(pointRandom, 2, pointRandom), Quaternion.identity);
-		
+			Instantiate(CommonDrop[ItemsIndex], transform.position, Quaternion.identity);
         }
     }
 
