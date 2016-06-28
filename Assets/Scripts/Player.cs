@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour {
 
     public int damage = 1;
+	public int gloveDmg;
 
     private gameMaster gm;
     private GameObject con;
@@ -13,13 +14,15 @@ public class Player : MonoBehaviour {
 
 	public Text timeLeft;
 	private float itemDuration;
-	float gloveTime = 3.0f;
+	float gloveTime;
+	public float gloveTimeLeft;
 
 
 
 	void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
+		gloveTime = gloveTimeLeft;
 		damage = 1;
     }
 
@@ -28,13 +31,14 @@ public class Player : MonoBehaviour {
 		string seconds = (itemDuration % 60).ToString ("00.00");
 
 			//Glove Time
+		 
 		if (damage > 1) {
 				timeLeft.gameObject.SetActive (true);
-				itemDuration = gloveTime -= Time.deltaTime;
+			itemDuration = gloveTimeLeft -= Time.deltaTime;
 				timeLeft.text = "" + seconds;
 				if (itemDuration < 0) {
-					damage -= 5;
-					gloveTime = 3.0f;
+				damage -= gloveDmg;
+				gloveTimeLeft = gloveTime;
 					timeLeft.gameObject.SetActive (false);
 				}
 			}
@@ -44,7 +48,7 @@ public class Player : MonoBehaviour {
 	{
 		if (gm.gloveCount > 0)
 		{
-			damage += 5;
+			damage += gloveDmg;
 			gm.gloveCount -= 1;
 		}
 	}
