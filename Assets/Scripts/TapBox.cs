@@ -12,18 +12,19 @@ public class TapBox : MonoBehaviour
 	//public Button BoxButton;
 	private Boxes box;
 	private Player player;
+	private LootManager loots;
 
-    public float ComdropRate;
-	public float UnCdropRate;
-	public float RaredropRate;
+   // public float ComdropRate;
+	//public float UnCdropRate;
+	//public float RaredropRate;
 
-    public GameObject[] CommonDrop;
-	public GameObject[] UncommonDrop;
-    public GameObject[] RareDrop;
+   // public GameObject[] CommonDrop;
+//	public GameObject[] UncommonDrop;
+  //  public GameObject[] RareDrop;
 
     //public Transform spawnPoint;
-    int minDrops = 1;
-    int maxDrops = 3;
+   // int minDrops = 1;
+  //  int maxDrops = 3;
  
 
     void Start()
@@ -44,7 +45,6 @@ public class TapBox : MonoBehaviour
     {
 		
 		life = life - dmg;
-
 		lifeBar.value -= dmg;
 		
 		int pickAnumber = Random.Range(1,4);//exclusive never prints the last only goes 1 to 3
@@ -61,55 +61,46 @@ public class TapBox : MonoBehaviour
 			box.buttonBox.interactable = true;
 			Destroy(gameObject, 0.10f);
 
-			if (Random.Range(0.0f, 1.0f) <= ComdropRate)
-            {
-                dropOnDeath();
-            }
-            else
-            {
-				if (Random.Range(0.0f, 1.0f) <= RaredropRate)
-                {
-                    rareDrop();
-                }
-				if (Random.Range(0.0f, 1.0f) <= UnCdropRate)
-				{
-					uncommonDrop ();
-				}
-      		}
 
-		//switch (3) 
-		//{
-		//case 1:
-			//return; break;
-		//case 2:
-			//break;
-		//case 3:
-			//break;
-		//default:
-			//break;
-		//}
+				loots = GameObject.FindGameObjectWithTag ("LootManager").GetComponent<LootManager> ();
+				loots.LootDrop ();
+	//		if (Random.Range(0.0f, 1.0f) <= ComdropRate)
+	//		{
+	//			dropOnDeath();
+      //      }
+        //    else
+          //  {
+			//	if (Random.Range(0.0f, 1.0f) <= RaredropRate)
+              //  {
+                //    rareDrop();
+    //            }
+	//			if (Random.Range(0.0f, 1.0f) <= UnCdropRate)
+	//			{
+	//				uncommonDrop ();
+	//			}
+      //		}
 		}
     }
-    public void dropOnDeath()
-    {
+ //   public void dropOnDeath()
+  //  {
         //int pointRandom = Random.Range(-1,3);
-        int numDrops = Random.Range(minDrops, maxDrops);
-        for (int i = 0; i < numDrops; ++i)
-        {
-			int ItemsIndex = Random.Range(0, CommonDrop.Length);
-			Instantiate(CommonDrop[ItemsIndex], transform.position, Quaternion.identity);
-        }
-    }
+  //      int numDrops = Random.Range(minDrops, maxDrops);
+  //      for (int i = 0; i < numDrops; ++i)
+   //     {
+	//		int ItemsIndex = Random.Range(0, CommonDrop.Length);
+	//		Instantiate(CommonDrop[ItemsIndex], transform.position, Quaternion.identity);
+ //       }
+  //  }
 
-    public void rareDrop()
-    {
-		int rareItemsIndex = Random.Range(0, RareDrop.Length);
-		Instantiate(RareDrop[rareItemsIndex], transform.position, Quaternion.identity);
-    }
+ //   public void rareDrop()
+  //  {
+//		int rareItemsIndex = Random.Range(0, RareDrop.Length);
+//		Instantiate(RareDrop[rareItemsIndex], transform.position, Quaternion.identity);
+  //  }
 
-	public void uncommonDrop()
-	{
-		int uncommonItemsIndex = Random.Range(0, UncommonDrop.Length);
-		Instantiate(UncommonDrop[uncommonItemsIndex], transform.position, Quaternion.identity);
-	}
+	//public void uncommonDrop()
+//	{
+	//	int uncommonItemsIndex = Random.Range(0, UncommonDrop.Length);
+//		Instantiate(UncommonDrop[uncommonItemsIndex], transform.position, Quaternion.identity);
+//	}
 }
