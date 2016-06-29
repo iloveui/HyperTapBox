@@ -30,15 +30,12 @@ public class TapBox : MonoBehaviour
     {
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
 		dmg = player.damage;
-		curr_life = life;
 
     }
-
 		
 	void Update()
 	{
 		dmg = player.damage;
-
 	}
 
 
@@ -46,7 +43,7 @@ public class TapBox : MonoBehaviour
     {
 		
 		life = life - dmg;
-		lifeBar.maxValue = curr_life;
+		lifeBar.value = lifeBar.maxValue;
 		lifeBar.value -= dmg;
 		
 		int pickAnumber = Random.Range(1,4);//exclusive never prints the last only goes 1 to 3

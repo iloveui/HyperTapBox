@@ -8,7 +8,7 @@ public class Boxes : MonoBehaviour
     private gameMaster gm;
     private GameObject mb;
 	public Button buttonBox;
-	public Slider lifebar;
+	public Slider lifebarr; // esta es la barra
 
 
 
@@ -18,8 +18,7 @@ public class Boxes : MonoBehaviour
 
 		if (gm.mbCount >= 1) {
 
-			lifebar.gameObject.SetActive (true);
-
+			lifebarr.gameObject.SetActive (true); //aqui se activa
 			int BoxIndex = Random.Range (0, BoxPrefabs.Length);
 			Instantiate (BoxPrefabs [BoxIndex], transform.position, Quaternion.identity);
 			gm.mbCount -= 1;
