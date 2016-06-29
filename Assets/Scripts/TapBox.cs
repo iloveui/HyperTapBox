@@ -5,7 +5,9 @@ using UnityEngine.UI;
 public class TapBox : MonoBehaviour
 {
 	public int life;
+	int curr_life;
     private int dmg = 0;
+	public Slider lifeBar;
 
 	//public Button BoxButton;
 	private Boxes box;
@@ -28,6 +30,7 @@ public class TapBox : MonoBehaviour
     {
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
 		dmg = player.damage;
+		curr_life = life;
 
     }
 
@@ -35,6 +38,7 @@ public class TapBox : MonoBehaviour
 	void Update()
 	{
 		dmg = player.damage;
+
 	}
 
 
@@ -42,6 +46,8 @@ public class TapBox : MonoBehaviour
     {
 		
 		life = life - dmg;
+		lifeBar.maxValue = curr_life;
+		lifeBar.value -= dmg;
 		
 		int pickAnumber = Random.Range(1,4);//exclusive never prints the last only goes 1 to 3
         Debug.Log (pickAnumber);
@@ -52,6 +58,7 @@ public class TapBox : MonoBehaviour
 		if (life < 1)
         {
             print(life);
+			lifeBar.gameObject.SetActive (false);
 			box = GameObject.FindGameObjectWithTag ("SpawnButton").GetComponent<Boxes> ();
 			box.buttonBox.interactable = true;
 			Destroy(gameObject, 0.10f);
