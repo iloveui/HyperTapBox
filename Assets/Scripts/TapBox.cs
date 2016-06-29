@@ -30,9 +30,10 @@ public class TapBox : MonoBehaviour
     {
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
 		dmg = player.damage;
+		lifeBar.maxValue = life;
+		lifeBar.value = lifeBar.maxValue;
 
     }
-		
 	void Update()
 	{
 		dmg = player.damage;
@@ -43,7 +44,7 @@ public class TapBox : MonoBehaviour
     {
 		
 		life = life - dmg;
-		lifeBar.value = lifeBar.maxValue;
+
 		lifeBar.value -= dmg;
 		
 		int pickAnumber = Random.Range(1,4);//exclusive never prints the last only goes 1 to 3
@@ -91,7 +92,7 @@ public class TapBox : MonoBehaviour
     }
     public void dropOnDeath()
     {
-        int pointRandom = Random.Range(-1,3);
+        //int pointRandom = Random.Range(-1,3);
         int numDrops = Random.Range(minDrops, maxDrops);
         for (int i = 0; i < numDrops; ++i)
         {

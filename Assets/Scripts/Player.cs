@@ -8,9 +8,9 @@ public class Player : MonoBehaviour {
 	public int gloveDmg;
 
     private gameMaster gm;
-    private GameObject con;
-    private GameObject mb;
-	private GameObject glove;
+    //private GameObject con;
+    //private GameObject mb;
+	//private GameObject glove;
 
 	public Text timeLeft;
 	private float itemDuration;
@@ -55,20 +55,20 @@ public class Player : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if (mb.CompareTag("MBOX"))
+		if (gameObject.CompareTag("MBOX"))
         {
-            Destroy(mb.gameObject);
+			Destroy(gameObject.gameObject);
             gm.mbCount += 1;
         }
 
-        if (con.CompareTag("coin"))
+		if (gameObject.CompareTag("coin"))
         {
-            Destroy(con.gameObject);
+			Destroy(gameObject.gameObject);
             gm.coins += 1;
         } 
-		if (glove.CompareTag("LootItem"))
+		if (gameObject.CompareTag("LootItem"))
 		{
-			Destroy(glove.gameObject);
+			Destroy(gameObject.gameObject);
 			gm.gloveCount += 1;
 		} 
     }
