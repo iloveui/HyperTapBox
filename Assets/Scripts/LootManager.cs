@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class LootManager : MonoBehaviour {
 
 	public List<Loot> loot = new List<Loot> ();
-	//public List<GameObject> spawnPoints = new List<GameObject> ();
+	public List<GameObject> spawnPoints = new List<GameObject> ();
 
 
 	public void LootDrop ()
@@ -17,7 +17,7 @@ public class LootManager : MonoBehaviour {
 				int numDrops = Random.Range(1, loot[i].maxDrop);
 				for (int d = 0; d < numDrops; d++)
 				{
-					Instantiate (loot [i].lootObject, transform.position, Quaternion.identity);
+					Instantiate (loot [i].lootObject, spawnPoints[Random.Range(0,spawnPoints.Count)]. transform.position, Quaternion.identity);
 				}
 			}
 		}
