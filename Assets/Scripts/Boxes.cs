@@ -18,8 +18,8 @@ public class Boxes : MonoBehaviour
 
 		if (gm.mbCount >= 1) {
 
-			lifebarr.gameObject.SetActive (true); //aqui se activa
-			lifebarr.interactable = false;
+			//lifebarr.gameObject.SetActive (true); //aqui se activa
+			//lifebarr.interactable = false;
 			int BoxIndex = Random.Range (0, BoxPrefabs.Length);
 			Instantiate (BoxPrefabs [BoxIndex], transform.position, Quaternion.identity);
 			gm.mbCount -= 1;
