@@ -8,7 +8,7 @@ public class Boxes : MonoBehaviour
     private gameMaster gm;
     private GameObject mb;
 	public Button buttonBox;
-	public Slider lifebarr; // esta es la barra
+	//public Slider lifebarr; 
 
 
 
