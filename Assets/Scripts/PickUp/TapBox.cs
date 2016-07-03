@@ -9,6 +9,8 @@ public class TapBox : MonoBehaviour
     private int dmg = 0;
 	public Slider lifeBar;
 
+	public AudioSource sfx;
+
 	//public Button BoxButton;
 	private Boxes box;
 	private Player player;
@@ -33,6 +35,7 @@ public class TapBox : MonoBehaviour
 		dmg = player.damage;
 		lifeBar.maxValue = life;
 		lifeBar.value = lifeBar.maxValue;
+		sfx = GetComponent<AudioSource>();
 
     }
 	void Update()
@@ -51,11 +54,12 @@ public class TapBox : MonoBehaviour
         Debug.Log (pickAnumber);
 		
 		gameObject.GetComponent<Animator>().Play("Shake"+pickAnumber); //Play Random animation of shake
-		
+		sfx.Play();
         print(life);
 		if (life < 1)
         {
             print(life);
+            
 			lifeBar.gameObject.SetActive (false);
 			box = GameObject.FindGameObjectWithTag ("SpawnButton").GetComponent<Boxes> ();
 			box.buttonBox.interactable = true;
