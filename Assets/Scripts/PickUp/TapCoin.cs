@@ -24,8 +24,8 @@ public class TapCoin : MonoBehaviour {
         if (HPCoin < 1)
             {
 			c.enabled = false;
-            Destroy(gameObject, 2);
             gm.coins += 1;
+            Destroy(gameObject, 1);
             }
         }
 }
