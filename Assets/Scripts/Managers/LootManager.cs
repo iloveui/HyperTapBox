@@ -14,7 +14,7 @@ public class LootManager : MonoBehaviour {
 		{
 			if (Random.value * 100 < loot [i].spawnChance) 
 			{
-				int numDrops = Random.Range(1, loot[i].maxDrop);
+				int numDrops = Random.Range(loot[i].minDrop, loot[i].maxDrop);
 				for (int d = 0; d < numDrops; d++)
 				{
 					Instantiate (loot [i].lootObject, spawnPoints[Random.Range(0,spawnPoints.Count)]. transform.position, Quaternion.identity);
@@ -29,6 +29,7 @@ public class LootManager : MonoBehaviour {
 public class Loot
 {
 	public GameObject lootObject;
+	public int minDrop;
 	public int maxDrop;
 	public float spawnChance;
 }
