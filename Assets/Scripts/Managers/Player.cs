@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
 	private float itemDuration;
 	float gloveTime;
 	public float gloveTimeLeft;
+	private bool gloveActive;
 
 
 
@@ -24,28 +25,31 @@ public class Player : MonoBehaviour {
         gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
 		gloveTime = gloveTimeLeft;
 		damage = 1;
+		gloveActive = false;
     }
 
 	void Update()
 	{
 		string seconds = (itemDuration % 60).ToString ("00.00");
 
+
 			//Glove Time
-		 
-		if (damage > 1) {
-				timeLeft.gameObject.SetActive (true);
+		if (gloveActive == true) {
+			timeLeft.gameObject.SetActive (true);
 			itemDuration = gloveTimeLeft -= Time.deltaTime;
 				timeLeft.text = "" + seconds;
 				if (itemDuration < 0) {
-				damage -= gloveDmg;
-				gloveTimeLeft = gloveTime;
+					damage -= gloveDmg;
+					gloveTimeLeft = gloveTime;
 					timeLeft.gameObject.SetActive (false);
+					gloveActive = false;
 				}
 			}
 	}
 
 	public void GloveAttack()
 	{
+		gloveActive = true;
 		if (gm.gloveCount > 0)
 		{
 			damage += gloveDmg;
