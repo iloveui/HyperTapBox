@@ -66,7 +66,7 @@ public class TapBox : MonoBehaviour
 			
 			gameObject.GetComponent<Collider>().enabled = false;
 			gameObject.GetComponent<Animator>().Play("destroy");
-			Destroy(gameObject, 6);
+			Destroy(gameObject, 4);
 
 
 				loots = GameObject.FindGameObjectWithTag ("LootManager").GetComponent<LootManager> ();
