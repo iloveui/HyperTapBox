@@ -8,7 +8,6 @@ public class TapBox : MonoBehaviour
 	int curr_life;
     private int dmg = 0;
 	public Slider lifeBar;
-
 	public AudioSource sfx;
 
 	//public Button BoxButton;
@@ -63,7 +62,11 @@ public class TapBox : MonoBehaviour
 			lifeBar.gameObject.SetActive (false);
 			box = GameObject.FindGameObjectWithTag ("SpawnButton").GetComponent<Boxes> ();
 			box.buttonBox.interactable = true;
-			Destroy(gameObject, 0.10f);
+
+			
+			gameObject.GetComponent<Collider>().enabled = false;
+			gameObject.GetComponent<Animator>().Play("destroy");
+			Destroy(gameObject, 6);
 
 
 				loots = GameObject.FindGameObjectWithTag ("LootManager").GetComponent<LootManager> ();

@@ -7,13 +7,11 @@ public class TapCoin : MonoBehaviour {
     private int timer = 0;
     private gameMaster gm;
 	public AudioSource sfx;
-	public Collider c;
     private bool flag = true;
 
     void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
-		Collider c = GetComponentInChildren<Collider>();
 		sfx = GetComponent<AudioSource>();
 
     }
@@ -22,7 +20,7 @@ public class TapCoin : MonoBehaviour {
         if (flag){
             if (timer>200){
                 flag = false;
-                c.enabled = false;
+                gameObject.GetComponent<Collider>().enabled = false;
                 gm.coins += 1;
                 sfx.Play();
                 gameObject.GetComponent<Animator>().Play("PickUp");
@@ -41,7 +39,7 @@ public class TapCoin : MonoBehaviour {
 		gameObject.GetComponent<Animator>().Play("PickUp");
         if (HPCoin < 1)
             {
-			c.enabled = false;
+			gameObject.GetComponent<Collider>().enabled = false;
             gm.coins += 1;
             Destroy(gameObject, 1);
             }
