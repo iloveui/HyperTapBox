@@ -6,7 +6,7 @@ public class LootManager : MonoBehaviour {
 
 	public List<Loot> loot = new List<Loot> ();
 	public List<GameObject> spawnPoints = new List<GameObject> ();
-	 private float InstantiationTimer = 2f;
+//	 private float InstantiationTimer = 2f;
 
 
 	public void LootDrop ()

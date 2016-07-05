@@ -21,7 +21,9 @@ public class PickUP2 : MonoBehaviour {
 		if (HP < 1)
 		{
 			Destroy(gameObject);
+			gameObject.SetActive (false);
 			IC.TwoTwo = true;
+			IC.numItem2 ++;
 		}
 	}
 }

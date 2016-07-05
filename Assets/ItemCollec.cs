@@ -5,28 +5,42 @@ using System.Collections;
 public class ItemCollec : MonoBehaviour {
 
 	private Player player;
+	[HideInInspector]public int numItem;
+	[HideInInspector]public int numItem1;
+	[HideInInspector]public int numItem2;
 
 
-	[HideInInspector]public bool OneOne;
+
+	[HideInInspector]public bool OneOne	= false;
 	public Image Item1;
 
-	[HideInInspector]public bool TwoTwo;
+	[HideInInspector]public bool TwoTwo = false;
 	public Image Item2;
+
+
 
 	void Start () 
 	{
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
-		OneOne = false;
-		TwoTwo = false;
+
 	}
 
-	void Update ()
+	void Update()
 	{
-		ONEItemsCollection ();
-	
+		if (numItem1 >= 1)
+			numItem1 = 1;
+		if (numItem2 >= 1)
+			numItem2 = 1;
+
+		numItem = numItem1 + numItem2;
+	}
+	void FixedUpdate ()
+	{
+		
+		CollectionONE ();
 	}
 		
-	public void ONEItemsCollection ()
+	public void CollectionONE ()
 	{
 
 		if (OneOne == true) {
@@ -37,14 +51,13 @@ public class ItemCollec : MonoBehaviour {
 			Item2.enabled = true;
 		}
 
-		if(OneOne == true  &&  TwoTwo == true)
-		{
+		if (numItem == 2) {
+			if (OneOne == true && TwoTwo == true) {
 			
-			player.damage += 100;
-			OneOne = false;
-			TwoTwo = false;
-		} 
-
-	
+				player.damage += 10;
+				OneOne = false;
+				TwoTwo = false;
+			} 
+		}
 	}
 }

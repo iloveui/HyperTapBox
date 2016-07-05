@@ -35,6 +35,7 @@ public class Player : MonoBehaviour {
 
 			//Glove Time
 		if (gloveActive == true) {
+			gm.btnGlove.interactable = false;
 			timeLeft.gameObject.SetActive (true);
 			itemDuration = gloveTimeLeft -= Time.deltaTime;
 				timeLeft.text = "" + seconds;
@@ -43,6 +44,7 @@ public class Player : MonoBehaviour {
 					gloveTimeLeft = gloveTime;
 					timeLeft.gameObject.SetActive (false);
 					gloveActive = false;
+					gm.btnGlove.interactable = true;
 				}
 			}
 	}
