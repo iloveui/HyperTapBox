@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class PickUP2 : MonoBehaviour {
 
-
+	/*
 	private int HP = 1;
 	private int Dmg = 1;
 	private ItemCollec IC;
@@ -25,5 +25,5 @@ public class PickUP2 : MonoBehaviour {
 			IC.TwoTwo = true;
 			IC.numItem2 ++;
 		}
-	}
+	}*/
 }
