@@ -1,0 +1,32 @@
+[
+		"Item":[
+			{
+				"id": 0,
+				"name": "Diamont",
+				"description": "Shiny.",
+				"level":[
+					{
+					"lvl": 1,
+					"atribute": 3,
+					"amout": 10,
+					"cost": 10,
+					},
+						],
+				"active": false,
+		},
+		{
+				"id": 1,
+				"name": "Ruby",
+				"description": "Red like a fire.",
+				"level":[
+					{
+					"lvl": 1,
+					"atribute": 2,
+					"amout": 10,
+					"cost": 10,
+					},
+						],
+				"active": false,
+		}
+	]
+]

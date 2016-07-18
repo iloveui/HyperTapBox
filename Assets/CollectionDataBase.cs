@@ -7,20 +7,23 @@ using System.IO;
 public class CollectionDataBase : MonoBehaviour {
 	private List<Item> database = new List<Item>();
 	private JsonData itemData;
+	private string jsonString;
 
 
 	void Start()
 	{
-		itemData = JsonMapper.ToObject(File.ReadAllText(Application.dataPath + "/StreamingAssets/Items.json")); 
+		//itemData = JsonMapper.ToObject(
+		jsonString = File.ReadAllText(Application.dataPath + "/DBJson/Items.json").ToString(); 
+		itemData = JsonMapper.ToObject (jsonString);
 		//Application.dataPath + "/StreamingAssets/Items.json"
 		//"jar:file://"+ Application.dataPath + "!/StreamingAssets/Items.json"
 
 	//	ConstructItemDataBase ();
-		Debug.Log(itemData["id"][0]);
+		Debug.Log(itemData["tittle"][0]);
 
 	}
 
-	/*void ConstructItemDataBase ()
+	/* void ConstructItemDataBase ()
 	{
 		for (int i = 0; i < itemData.Count; i++) 
 		{
