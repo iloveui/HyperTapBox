@@ -23,4 +23,15 @@ public class itemScript : MonoBehaviour {
 		gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
 		gm.coins += 10;
 	}
+
+	public void Glove()
+	{
+		gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
+		if (gm.coins >= cost)
+		{
+			gm.gloveCount += 1;
+			gm.coins -= cost;
+		}
+
+	}
 }

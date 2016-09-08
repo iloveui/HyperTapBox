@@ -48,29 +48,29 @@ public class TapBox : MonoBehaviour
 		
 		life = life - dmg;
 		lifeBar.value -= dmg;
+
 		
 		int pickAnumber = Random.Range(1,4);//exclusive never prints the last only goes 1 to 3
-        Debug.Log (pickAnumber);
 		
 		gameObject.GetComponent<Animator>().Play("Shake"+pickAnumber); //Play Random animation of shake
 		sfx.Play();
         print(life);
-		if (life < 1)
-        {
-            print(life);
-            
+		if (life <= 0) {
+
+			//print(life);
+			Debug.Log (life);
+			loots = GameObject.FindGameObjectWithTag ("LootManager").GetComponent<LootManager> ();
+			loots.LootDrop ();
+			gameObject.GetComponent<Collider>().enabled = false;
 			lifeBar.gameObject.SetActive (false);
+			gameObject.GetComponent<Animator>().Play("destroy");
+
+
+			Destroy(gameObject, 4);
+
 			box = GameObject.FindGameObjectWithTag ("SpawnButton").GetComponent<Boxes> ();
 			box.buttonBox.interactable = true;
 
-			
-			gameObject.GetComponent<Collider>().enabled = false;
-			gameObject.GetComponent<Animator>().Play("destroy");
-			Destroy(gameObject, 4);
-
-
-				loots = GameObject.FindGameObjectWithTag ("LootManager").GetComponent<LootManager> ();
-				loots.LootDrop ();
 	//		if (Random.Range(0.0f, 1.0f) <= ComdropRate)
 	//		{
 	//			dropOnDeath();
