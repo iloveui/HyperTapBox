@@ -15,8 +15,10 @@ public class gameMaster : MonoBehaviour {
 	//public GameObject boxGlove;
     public GameObject shopMenu;
 	public GameObject InvCon;
+	public GameObject Collection;
     private static gameMaster instance;
     public static gameMaster Instance { get { return instance; } }
+
 
     private void Start()
     {
@@ -24,6 +26,7 @@ public class gameMaster : MonoBehaviour {
 		//boxGlove.SetActive (false);
         shopMenu.SetActive(false);
 		InvCon.SetActive(false);
+		Collection.SetActive(false);
     }
     void Update()
     {
@@ -97,5 +100,9 @@ public class gameMaster : MonoBehaviour {
 	public void ToggleInvCon ()
 	{
 		InvCon.SetActive(!InvCon.activeSelf);
+	}
+	public void ToggleBtnInv ()
+	{
+		Collection.SetActive(!Collection.activeSelf);
 	}
 }

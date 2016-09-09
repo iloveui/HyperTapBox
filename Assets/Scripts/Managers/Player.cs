@@ -19,6 +19,16 @@ public class Player : MonoBehaviour {
 	private bool gloveActive;
 
 
+	public Text playerDmgText;
+	public float DmgText;
+
+	// Armas permanentes
+	public int weaponHandDamage = 0;
+	public Button btnHand;
+
+	public int weaponSwordOne = 0;
+	public Button btnSwordOne;
+
 
 	void Start()
     {
@@ -26,6 +36,8 @@ public class Player : MonoBehaviour {
 		gloveTime = gloveTimeLeft;
 		damage = 1;
 		gloveActive = false;
+
+		playerDmgText.text = damage.ToString ();
     }
 
 	void Update()
@@ -38,9 +50,11 @@ public class Player : MonoBehaviour {
 			gm.btnGlove.interactable = false;
 			timeLeft.gameObject.SetActive (true);
 			itemDuration = gloveTimeLeft -= Time.deltaTime;
-				timeLeft.text = "" + seconds;
+			timeLeft.text = "" + seconds;
+			playerDmgText.text = damage.ToString ();
 				if (itemDuration < 0) {
 					damage -= gloveDmg;
+					playerDmgText.text = damage.ToString ();
 					gloveTimeLeft = gloveTime;
 					timeLeft.gameObject.SetActive (false);
 					gloveActive = false;
@@ -58,6 +72,22 @@ public class Player : MonoBehaviour {
 			gm.gloveCount -= 1;
 		}
 	}
+
+	// Armas permanentes
+	public void WeaponHand()
+	{
+		damage += weaponHandDamage;
+		playerDmgText.text = damage.ToString ();
+		btnHand.interactable = false;
+	}
+
+	public void SwordOne()
+	{
+		damage += weaponSwordOne;
+		playerDmgText.text = damage.ToString ();
+		btnSwordOne.interactable = false;
+	}
+
 
     void OnMouseDown()
     {
