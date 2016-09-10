@@ -15,6 +15,10 @@ public class TapBox : MonoBehaviour
 	private Player player;
 	private LootManager loots;
 
+	public Text hpText;
+	public Text hpTextTotal;
+	//public float DmgText;
+
    // public float ComdropRate;
 	//public float UnCdropRate;
 	//public float RaredropRate;
@@ -35,11 +39,13 @@ public class TapBox : MonoBehaviour
 		lifeBar.maxValue = life;
 		lifeBar.value = lifeBar.maxValue;
 		sfx = GetComponent<AudioSource>();
+		hpTextTotal.text = life.ToString();
 
     }
 	void Update()
 	{
 		dmg = player.damage;
+		hpText.text = life.ToString ()+" / ";
 	}
 
 
