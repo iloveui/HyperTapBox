@@ -29,6 +29,8 @@ public class Player : MonoBehaviour {
 	public int weaponSwordOne = 0;
 	public Button btnSwordOne;
 
+	public int weaponSuper = 0;
+	public Button btnSuper;
 
 	void Start()
     {
@@ -88,7 +90,13 @@ public class Player : MonoBehaviour {
 		btnSwordOne.interactable = false;
 	}
 
-
+	public void Super()
+	{
+		damage += weaponSuper;
+		playerDmgText.text = damage.ToString ();
+		btnSuper.interactable = false;
+	}
+		
     void OnMouseDown()
     {
 		if (gameObject.CompareTag("MBOX"))
