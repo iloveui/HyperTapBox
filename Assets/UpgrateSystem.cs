@@ -48,7 +48,7 @@ public class UpgrateSystem : MonoBehaviour {
 		costlvl = currentWeaponlvl * 5;
 		//weaponDmg = currentWeaponlvl * 5;
 
-		DamageText.text = ("Damage: " + " " + ply.damage);
+		DamageText.text = ("Damage: " + " " + ply.weaponSwordOne);
 		CostText.text = ("Cost: " + " " + costlvl);
 		WeaponlvlUP.text = ("Level: " + currentWeaponlvl);
 		Save();
@@ -59,8 +59,9 @@ public class UpgrateSystem : MonoBehaviour {
 	{
 
 		gm.coins -= costlvl;
-		ply.damage += 5;
+		ply.weaponSwordOne += 5;
 		currentWeaponlvl++;
+		ply.dmgUpdate = true;
 	}
 
 	public void Awake()
