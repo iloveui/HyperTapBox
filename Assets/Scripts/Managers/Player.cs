@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
 
     public int damage = 1;
 	public int gloveDmg;
+	public int weaponDamage;
 
     private gameMaster gm;
     //private GameObject con;
@@ -46,6 +47,8 @@ public class Player : MonoBehaviour {
 	{
 		string seconds = (itemDuration % 60).ToString ("00.00");
 
+		damage = damage += weaponDamage;
+
 
 			//Glove Time
 		if (gloveActive == true) {
@@ -70,7 +73,7 @@ public class Player : MonoBehaviour {
 		gloveActive = true;
 		if (gm.gloveCount > 0)
 		{
-			damage += gloveDmg;
+			weaponDamage += gloveDmg;
 			gm.gloveCount -= 1;
 		}
 	}
@@ -78,21 +81,21 @@ public class Player : MonoBehaviour {
 	// Armas permanentes
 	public void WeaponHand()
 	{
-		damage += weaponHandDamage;
+		weaponDamage += weaponHandDamage;
 		playerDmgText.text = damage.ToString ();
 		btnHand.interactable = false;
 	}
 
 	public void SwordOne()
 	{
-		damage += weaponSwordOne;
+		weaponDamage += weaponSwordOne;
 		playerDmgText.text = damage.ToString ();
 		btnSwordOne.interactable = false;
 	}
 
 	public void Super()
 	{
-		damage += weaponSuper;
+		weaponDamage += weaponSuper;
 		playerDmgText.text = damage.ToString ();
 		btnSuper.interactable = false;
 	}
@@ -116,4 +119,19 @@ public class Player : MonoBehaviour {
 			gm.gloveCount += 1;
 		} 
     }
+
+	public void Awake()
+	{
+		if (PlayerPrefs.HasKey ("Damage")) {
+			//We had a previous seasion
+			damage = PlayerPrefs.GetInt ("Damage");
+
+		} else 
+			Save ();
+	}
+	public void Save()
+	{
+		PlayerPrefs.SetInt("Damage", damage);
+
+	}
 }

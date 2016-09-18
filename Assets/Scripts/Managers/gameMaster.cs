@@ -12,10 +12,10 @@ public class gameMaster : MonoBehaviour {
     public Text misteryBoxs;
 	public Text gloves;
 	public Button btnGlove;
-	//public GameObject boxGlove;
     public GameObject shopMenu;
 	public GameObject InvCon;
 	public GameObject Collection;
+	public GameObject Upgrate;
     private static gameMaster instance;
     public static gameMaster Instance { get { return instance; } }
 
@@ -23,7 +23,6 @@ public class gameMaster : MonoBehaviour {
     private void Start()
     {
 		btnGlove.interactable = false;
-		//boxGlove.SetActive (false);
         shopMenu.SetActive(false);
 		InvCon.SetActive(false);
 		Collection.SetActive(false);
@@ -34,7 +33,6 @@ public class gameMaster : MonoBehaviour {
 			btnGlove.interactable = true;
 		else
 			btnGlove.interactable = false;
-			//boxGlove.SetActive (false);
 
        misteryBoxs.text = (" " + mbCount);
        coinScore.text = (" " + coins);
@@ -46,7 +44,6 @@ public class gameMaster : MonoBehaviour {
     {
 		if (gloveCount > 0)
 			btnGlove.interactable = true;
-			//boxGlove.SetActive (true);
 
 
         instance = this;
@@ -104,5 +101,9 @@ public class gameMaster : MonoBehaviour {
 	public void ToggleBtnInv ()
 	{
 		Collection.SetActive(!Collection.activeSelf);
+	}
+	public void ToggleBtnUpgrate ()
+	{
+		Upgrate.SetActive(!Upgrate.activeSelf);
 	}
 }
