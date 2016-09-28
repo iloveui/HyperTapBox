@@ -24,7 +24,7 @@ public class TapCoin : MonoBehaviour {
                 gm.coins += 1;
                 sfx.Play();
                 gameObject.GetComponent<Animator>().Play("PickUp");
-                Destroy(gameObject, 1);
+                //Destroy(gameObject, 1);
            } else {
                 timer ++;
             }
@@ -41,7 +41,7 @@ public class TapCoin : MonoBehaviour {
             {
 			gameObject.GetComponent<Collider>().enabled = false;
             gm.coins += 1;
-            Destroy(gameObject, 1);
+           // Destroy(gameObject, 1);
             }
         }
 }
