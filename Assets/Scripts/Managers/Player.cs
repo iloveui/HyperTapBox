@@ -6,6 +6,8 @@ public class Player : MonoBehaviour {
 
     public int damage = 1;
 	public int gloveDmg;
+	public int weaponDamage;
+	public bool dmgUpdate = false;
 
     private gameMaster gm;
     //private GameObject con;
@@ -26,7 +28,7 @@ public class Player : MonoBehaviour {
 	public int weaponHandDamage = 0;
 	public Button btnHand;
 
-	public int weaponSwordOne = 0;
+	public int weaponSwordOne;
 	public Button btnSwordOne;
 
 	public int weaponSuper = 0;
@@ -36,7 +38,7 @@ public class Player : MonoBehaviour {
     {
         gm = GameObject.FindGameObjectWithTag("GameMaster").GetComponent<gameMaster>();
 		gloveTime = gloveTimeLeft;
-		damage = 1;
+
 		gloveActive = false;
 
 		playerDmgText.text = damage.ToString ();
@@ -45,7 +47,13 @@ public class Player : MonoBehaviour {
 	void Update()
 	{
 		string seconds = (itemDuration % 60).ToString ("00.00");
-
+		//weaponDamage = weaponDamage += weaponSwordOne += weaponHandDamage += weaponSuper;
+		if (dmgUpdate = true)
+		{
+			
+			damage = damage += weaponDamage;
+			dmgUpdate = false;
+		}
 
 			//Glove Time
 		if (gloveActive == true) {
@@ -63,6 +71,7 @@ public class Player : MonoBehaviour {
 					gm.btnGlove.interactable = true;
 				}
 			}
+		Save ();
 	}
 
 	public void GloveAttack()
@@ -81,6 +90,7 @@ public class Player : MonoBehaviour {
 		damage += weaponHandDamage;
 		playerDmgText.text = damage.ToString ();
 		btnHand.interactable = false;
+		dmgUpdate = true;
 	}
 
 	public void SwordOne()
@@ -88,6 +98,7 @@ public class Player : MonoBehaviour {
 		damage += weaponSwordOne;
 		playerDmgText.text = damage.ToString ();
 		btnSwordOne.interactable = false;
+		dmgUpdate = true;
 	}
 
 	public void Super()
@@ -95,6 +106,7 @@ public class Player : MonoBehaviour {
 		damage += weaponSuper;
 		playerDmgText.text = damage.ToString ();
 		btnSuper.interactable = false;
+		dmgUpdate = true;
 	}
 		
     void OnMouseDown()
@@ -116,4 +128,18 @@ public class Player : MonoBehaviour {
 			gm.gloveCount += 1;
 		} 
     }
+
+	public void Awake()
+	{
+		if (PlayerPrefs.HasKey ("Damage")) 
+			//We had a previous seasion
+			damage = PlayerPrefs.GetInt ("Damage");
+		else 
+			Save ();
+	}
+	public void Save()
+	{
+		PlayerPrefs.SetInt("Damage", damage);
+
+	}
 }
